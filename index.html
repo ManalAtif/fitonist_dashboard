@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fitonist Analytics Dashboard</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="dashboard-shell">
+  <header class="topbar">
+    <a class="brand" href="#">fitonist</a>
+
+    <nav class="main-nav">
+      <button class="nav-pill active" data-section="overview">Overview</button>
+      <button class="nav-pill" data-section="analytics">Analytics</button>
+      <button class="nav-pill" data-section="finance">Finance</button>
+      <button class="nav-pill" data-section="workouts">Workouts</button>
+    </nav>
+
+    <div class="profile-area">
+      <button class="icon-btn" title="Search"><i class="bi bi-search"></i></button>
+      <div class="profile">
+        <div class="avatar">OB</div>
+        <div class="profile-text">
+          <strong>Olivia Brooks</strong>
+          <small>admin2@ftn.net</small>
+        </div>
+        <i class="bi bi-chevron-down"></i>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Revenue + Calendar + Installs -->
+    <section class="top-grid">
+      <div class="panel revenue-panel">
+        <div class="panel-heading">
+          <div>
+            <h3>Revenue</h3>
+            <small class="muted">Subscription performance</small>
+          </div>
+          <div class="segmented" id="revenueFilter">
+            <button data-range="Today">Today</button>
+            <button data-range="Week">Week</button>
+            <button class="selected" data-range="Month">Month</button>
+            <button data-range="Range">Range</button>
+          </div>
+        </div>
+
+        <div class="stats-row">
+          <div>
+            <div class="big-number" id="revenueValue">79,675</div>
+            <div class="stat-caption">This month <span class="growth">↗ 2.4%</span></div>
+          </div>
+          <div>
+            <div class="big-number" id="subscriptionValue">312</div>
+            <div class="stat-caption">Daily subscriptions <span class="growth">↗ 4.7%</span></div>
+          </div>
+        </div>
+
+        <div class="chart-wrap revenue-chart-wrap">
+          <canvas id="revenueChart"></canvas>
+        </div>
+      </div>
+
+      <div class="panel calendar-panel">
+        <div class="calendar-top">
+          <button class="month-btn"><span id="calendarMonth">July 2024</span> <i class="bi bi-chevron-down"></i></button>
+          <button class="round-arrow"><i class="bi bi-arrow-up-right"></i></button>
+        </div>
+
+        <div class="calendar-grid" id="calendarGrid"></div>
+
+        <div class="calendar-total">
+          <span>$18,434</span>
+          <button><i class="bi bi-bar-chart-line"></i></button>
+        </div>
+      </div>
+
+      <div class="panel installs-panel">
+        <div class="panel-heading">
+          <div>
+            <h3>Installs</h3>
+            <small class="muted">Mobile acquisition</small>
+          </div>
+          <div class="segmented" id="installFilter">
+            <button data-range="Today">Today</button>
+            <button class="selected" data-range="Week">Week</button>
+            <button data-range="Month">Month</button>
+            <button data-range="Range">Range</button>
+          </div>
+        </div>
+
+        <div class="install-total">4,365 <span>This week</span></div>
+
+        <div class="platforms">
+          <div class="platform-card">
+            <i class="bi bi-apple"></i>
+            <div><small>iOS</small><strong>2,876</strong></div>
+          </div>
+          <div class="platform-card">
+            <i class="bi bi-google-play"></i>
+            <div><small>Android</small><strong>1,489</strong></div>
+          </div>
+        </div>
+
+        <div class="chart-wrap installs-chart-wrap">
+          <canvas id="installsChart"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lower cards -->
+    <section class="bottom-grid">
+      <div class="panel workouts-panel">
+        <div class="panel-heading">
+          <div>
+            <h3>Popular workouts</h3>
+            <small class="muted">Most completed sessions</small>
+          </div>
+          <select class="dark-select" id="genderSelect">
+            <option>Male</option>
+            <option>Female</option>
+            <option>All</option>
+          </select>
+        </div>
+
+        <div class="workout-list">
+          <div class="workout-item">
+            <div class="workout-image image-1">🏋️</div>
+            <div class="workout-info"><strong>Good morning</strong><span class="tag yellow">Shoulders</span><small>20 reps</small></div>
+            <div class="workout-count">39k</div>
+          </div>
+          <div class="workout-item">
+            <div class="workout-image image-2">🧘</div>
+            <div class="workout-info"><strong>Seated Back Extension</strong><span class="tag green">Lower Back</span><small>15 reps</small></div>
+            <div class="workout-count">31k</div>
+          </div>
+          <div class="workout-item">
+            <div class="workout-image image-3">💪</div>
+            <div class="workout-info"><strong>Pull Ups</strong><span class="tag purple">Back</span><small>12 reps</small></div>
+            <div class="workout-count">27k</div>
+          </div>
+          <div class="workout-item">
+            <div class="workout-image image-4">🏃</div>
+            <div class="workout-info"><strong>Dumbbell Lunge</strong><span class="tag blue">Legs</span><small>16 reps</small></div>
+            <div class="workout-count">23k</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel age-panel">
+        <div class="panel-heading">
+          <div>
+            <h3>Age range</h3>
+            <small class="muted">Active members</small>
+          </div>
+          <button class="small-icon"><i class="bi bi-pie-chart"></i></button>
+        </div>
+        <div class="age-chart-wrap">
+          <canvas id="ageChart"></canvas>
+          <div class="age-center"><strong>46%</strong><span>18–30 years</span></div>
+        </div>
+      </div>
+
+      <div class="panel impressions-panel">
+        <div class="panel-heading">
+          <div>
+            <h3>Impressions</h3>
+            <small class="muted">Worldwide audience</small>
+          </div>
+        </div>
+
+        <div class="impression-content">
+          <div class="world-map">
+            <div class="map-dot d1"></div><div class="map-dot d2"></div><div class="map-dot d3"></div>
+            <div class="map-dot d4"></div><div class="map-dot d5"></div><div class="map-dot d6"></div>
+            <div class="map-dot d7"></div><div class="map-dot d8"></div><div class="map-dot d9"></div>
+            <div class="map-dot d10"></div><div class="map-dot d11"></div><div class="map-dot d12"></div>
+          </div>
+
+          <div class="impression-side">
+            <div class="impression-total">231,841</div>
+            <span class="muted">Impressions worldwide</span>
+            <div class="country-list">
+              <div><span>🇺🇸 USA</span><b>43,987</b></div>
+              <div><span>🇦🇺 Australia</span><b>32,648</b></div>
+              <div><span>🇩🇪 Germany</span><b>26,563</b></div>
+              <div><span>🇪🇸 Spain</span><b>21,514</b></div>
+              <div><span>🇦🇷 Argentina</span><b>18,934</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- jQuery + Bootstrap + Chart.js -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
