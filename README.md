@@ -2,6 +2,8 @@
 
  A responsive fitness analytics dashboard built with HTML, CSS, Bootstrap, jQuery, and Chart.js.
 
+ # https://fitonist-dashboard.vercel.app/
+
  ## Project Files
 
  - `index.html` - Dashboard structure and CDN dependency links.
